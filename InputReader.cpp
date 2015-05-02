@@ -51,13 +51,15 @@ InputReader::setMapFromFile();
     while(in.good())
     {
         std::string entry = in.getLine();
-        //TODO: parse the string
         split = splitString(entry, " ");
         itr = split.begin();
+        //get rid of the 'x:' in input file
         x = std::stoi(*itr.substr(2, std::string::npos);
         itr++;
+        //get rid of the 'y:' in input file
         y = std::stoi(*itr.substr(2, std::string::npos);
 
+        //update map to reflect more weight
         map.changeWeight(x, y, 1); 
         //load a mappable array and a resolution
     }
