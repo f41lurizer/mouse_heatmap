@@ -1,3 +1,6 @@
+
+#ifndef INPUTREADER_H
+#define INPUTREADER_H
 /* Author: Mazin Jindeel
 ** Date:   5/15
 ** Class Name: InputReader
@@ -29,3 +32,4 @@ Class InputReader
         //method to read map from current fileName
         Map setMapFromFile();
 };
+#endif

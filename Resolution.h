@@ -1,3 +1,11 @@
+/* Author: Mazin Jindeel
+** Date: 5/15
+** Class Name: Resolution
+** Class Purpose: Stores a simple integer resolution and provides ways to access and modify it
+*/
+
+#ifndef RESOLUTION_H
+#define RESOLUTION_H
 Class Resolution
 {
     Public:
@@ -16,3 +24,4 @@ Class Resolution
     Private:
         int x, y;
 };
+#endif

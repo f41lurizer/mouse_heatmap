@@ -1,4 +1,9 @@
-#include<fstream>
+/* Author: Mazin Jindeel
+** Date: 5/15
+** Class Name: InputReader
+*/
+
+#include <fstream>
 #include "Resolution.h"
 #include <vector>
 #include <string>
