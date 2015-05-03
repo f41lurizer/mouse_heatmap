@@ -15,7 +15,7 @@ class Map
         //constructor that will initialize a bitmap filled values of 0 with the specified resolution
         Map(Resolution resolution);
         //constructor that will construct a map given a map as input (copy by value)
-        Map(Map oldMap);
+        Map(Resolution oldRes, int** oldMap);
         //returns the pointer to the array representation of the bitmap  
         int** getMap();
         //applies a dithering algorithm to the map, returning the ditered result as a new map object
@@ -28,8 +28,8 @@ class Map
         int getWeight(int x, int y);
         //set the value of a pixel 
         void setWeight(int x, int y, int amount);
-        //change the value of a pixel by the specified amount
-        void changeWeight(int x, int y, int amount);
+        //change the value of a pixel by the specified amount, returns new weight
+        int changeWeight(int x, int y, int amount);
         
     private:
         Resolution res;

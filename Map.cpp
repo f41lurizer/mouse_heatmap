@@ -5,8 +5,8 @@
 #include "Map.h"
 Map::Map()
 {
-    res = null;
-    map = null;
+    res = Resolution();
+    map = 0;
 }
 
 Map::Map(Resolution resolution)
@@ -15,17 +15,17 @@ Map::Map(Resolution resolution)
     initMap();
 }
 
-Map::Map(Map oldMap)
+Map::Map(Resolution oldRes, int** oldMap)
 {
-    res = oldMap.getResolution();
+    res = oldRes;
     initMap();
     //copy old map by value
     for(int y = 0; y < res.getY(); y++)
         for(int x = 0; x < res.getX(); x++)
-            setWeight(x, y, oldMap.getWeight(x, y));   
+            setWeight(x, y, *(*oldMap+y)+x);   
 }
 
-int* Map::getMap()
+int** Map::getMap()
 {
     return map;
 }
@@ -33,7 +33,7 @@ int* Map::getMap()
 Map Map::dither()
 {
     //TODO: dithering algorithm
-    return null;
+    return Map();
 }
 
 Resolution Map::getResolution()
@@ -41,7 +41,7 @@ Resolution Map::getResolution()
     return res;
 }
 
-int Map::getWeight(int x, int y)
+int Map::getWeight(int x, int y) 
 {
     return (x < res.getX() && y < res.getY()) ? *(*(map + y) + x):-1;
 }
@@ -63,7 +63,7 @@ int Map::changeWeight(int x, int y, int amount)
 
 void Map::initMap()
 {
-    if(resolution == null)
+    if(!res.mappable())
         return;
     map = new int*[res.getY()];
     for(int y = 0; y < res.getY(); y++)
