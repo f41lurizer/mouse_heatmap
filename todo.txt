@@ -1,0 +1,4 @@
+fix substr error with InputReader.cpp
+finish makefile
+finish testing implementation
+

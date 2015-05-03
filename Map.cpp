@@ -2,7 +2,7 @@
 ** Date: 5/15
 ** Class Name: Map
 */
-
+#include "Map.h"
 Map::Map()
 {
     res = null;

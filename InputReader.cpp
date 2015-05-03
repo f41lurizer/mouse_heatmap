@@ -10,11 +10,8 @@
 #include <sstream>
 #include "stringSplitter.h"
 #include "Resolution.h"
-
-InputReader::InputReader()
-{
-    map = null;
-};
+#include "InputReader.h"
+#include <cstdio>
 
 InputReader::InputReader(const char *fileName)
 {
@@ -22,26 +19,27 @@ InputReader::InputReader(const char *fileName)
     getMap();
 }
 
-InputReader::getMap()
+Map InputReader::getMap()
 {
     return map;
 }
 
-InputReader::setFileName(const char* fileName)
+Map InputReader::setFileName(const char* fileName)
 {
     file = fileName;
-    getMap();
+    return getMap();
 }
 
 //uses fstream
-InputReader::setMapFromFile();
+Map InputReader::setMapFromFile()
 {
     //file IO to get the map
     //set map to whatever comes out of file
     std::ifstream in(file, std::ifstream::in);
     
     //get resolution
-    std::string resolution = in.getLine();
+    std::string resolution;
+    std::getline(in, resolution);
     int x, y;
     std::vector<std::string> split = splitString(resolution, "x");
     std::vector<std::string>::iterator itr = split.begin();
@@ -51,11 +49,12 @@ InputReader::setMapFromFile();
     
     Resolution res(x, y);
     //now that we have a resolution, create a map with this resolution
-    map = new Map(res);
+    map = Map(res);
 
     while(in.good())
     {
-        std::string entry = in.getLine();
+        std::string entry;
+        std::getline(in, entry);
         split = splitString(entry, " ");
         itr = split.begin();
         //get rid of the 'x:' in input file

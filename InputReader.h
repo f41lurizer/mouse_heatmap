@@ -9,11 +9,11 @@
 
 #include "Map.h"
 
-Class InputReader
+class InputReader
 {
-    Public: 
+    public: 
         //default constructor
-        InputReader();
+        InputReader(){}
         
         //constructor that takes in a filename of a heatmap input
         InputReader(const char *fileName);
@@ -24,7 +24,7 @@ Class InputReader
         //method to set a fileName (for reading multiple files)
         Map setFileName(const char* fileName);
 
-    Private:
+    private:
         //the Map object that holds the inputReader's current map
         Map map;
         const char *file;

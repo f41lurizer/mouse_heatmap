@@ -7,9 +7,9 @@
 */
 //TODO: add options to set a new resolution and wipe the map? (can just recreate a new map, so maybe no need)
 #include "Resolution.h"
-Class Map
+class Map
 {
-    Public:
+    public:
         //default constructor, will make all values null
         Map();
         //constructor that will initialize a bitmap filled values of 0 with the specified resolution
@@ -31,7 +31,7 @@ Class Map
         //change the value of a pixel by the specified amount
         void changeWeight(int x, int y, int amount);
         
-    Private:
+    private:
         Resolution res;
         int** map;
         //initialize array to whatever is in resolution, setting all elements to 0

@@ -6,9 +6,9 @@
 
 #ifndef RESOLUTION_H
 #define RESOLUTION_H
-Class Resolution
+class Resolution
 {
-    Public:
+    public:
 
         Resolution(){}
         Resolution(int xVal, int yVal)
@@ -20,8 +20,8 @@ Class Resolution
         int getY(){return y;}
 
         void setX(int val) {x = val;}
-        void setY(int val) (y = val;)
-    Private:
+        void setY(int val) {y = val;}
+    private:
         int x, y;
 };
 #endif
