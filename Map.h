@@ -20,6 +20,7 @@ Class Map
         int** getMap();
         //applies a dithering algorithm to the map, returning the ditered result as a new map object
         //TODO: add options for different dithering algorithms/options
+        //TODO: implement dither algorithm
         Map dither();
         //return the resolution object this map is based on
         Resolution getResolution();
