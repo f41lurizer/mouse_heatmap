@@ -10,7 +10,7 @@ class Resolution
 {
     public:
 
-        Resolution(){}
+        Resolution(){ x = y = 0;}
         Resolution(int xVal, int yVal)
         {
             setX(xVal);
@@ -18,7 +18,7 @@ class Resolution
         }
         int getX(){return x;}
         int getY(){return y;}
-
+        bool mappable(){return (x > 0 && y > 0);}
         void setX(int val) {x = val;}
         void setY(int val) {y = val;}
     private:
