@@ -1,9 +1,21 @@
-Pass in this flag -- not sure how -std=c++11 --needed for stoi in InputReader
-Map.o: Map.cpp
-	g++ -c Map.cpp
+#Pass in this flag -- not sure how -std=c++11 --needed for stoi in InputReader
+CC=g++
+CXXFLAGS=-c -Wall -std=c++11
+
+all: test
+
+test: InputReader.o Map.o StringSplitter.o bitmap_image.o
+	$(CC) InputReader.o Map.o StringSplitter.o bitmap_image.o -o test
+
+
 InputReader.o: InputReader.cpp
-	g++ -c InputReader.cpp
-bitmap_image.o: bitmap/bitmap_image.hpp
-	g++ -c bitmap/bitmap_image.hpp
+	$(CC) $(CXXFLAGS) InputReader.cpp
+
+Map.o: Map.cpp
+	$(CC) $(CXXFLAGS)  Map.cpp
+
 StringSplitter.o: StringSplitter.h
-	g++ -c StringSplitter.h
+	$(CC) $(CXXFLAGS) StringSplitter.h
+
+bitmap_image.o: bitmap/bitmap_image.hpp
+	$(CC) $(CXXFLAGS) bitmap/bitmap_image.hpp
