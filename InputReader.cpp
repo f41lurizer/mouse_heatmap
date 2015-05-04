@@ -8,7 +8,7 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "StringSplitter.h"
+#include "StringSplitter.cpp"
 #include "Resolution.h"
 #include "InputReader.h"
 #include <cstdio>

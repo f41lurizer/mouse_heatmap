@@ -1,3 +1,5 @@
+#ifndef STRINGSPLITTER_H
+#define STRINGSPLITTER_H
 #include <vector>
 #include <string>
 #include <iostream>
@@ -30,3 +32,4 @@ std::vector<std::string> splitString(std::string input, std::string delimiter)
      return output;
   
   }
+#endif
