@@ -22,7 +22,7 @@ class InputReader
         Map getMap();
         
         //method to set a fileName (for reading multiple files)
-        Map setFileName(const char* fileName);
+        void setFileName(const char* fileName);
 
     private:
         //the Map object that holds the inputReader's current map
@@ -30,6 +30,6 @@ class InputReader
         const char *file;
         
         //method to read map from current fileName
-        Map setMapFromFile();
+        void setMapFromFile();
 };
 #endif

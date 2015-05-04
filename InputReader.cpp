@@ -16,7 +16,7 @@
 InputReader::InputReader(const char *fileName)
 {
     setFileName(fileName);
-    getMap();
+    setMapFromFile();
 }
 
 Map InputReader::getMap()
@@ -24,14 +24,14 @@ Map InputReader::getMap()
     return map;
 }
 
-Map InputReader::setFileName(const char* fileName)
+void InputReader::setFileName(const char* fileName)
 {
     file = fileName;
-    return getMap();
+    setMapFromFile();
 }
 
 //uses fstream
-Map InputReader::setMapFromFile()
+void InputReader::setMapFromFile()
 {
     //file IO to get the map
     //set map to whatever comes out of file
