@@ -3,6 +3,7 @@
 ** Class Name: Map
 */
 #include "Map.h"
+#include <iostream> //for debugging only
 Map::Map()
 {
     res = Resolution();
@@ -11,8 +12,12 @@ Map::Map()
 
 Map::Map(Resolution resolution)
 {
-    res = resolution;
+    res = Resolution();
+    res.setX(resolution.getX());
+    res.setY(resolution.getY());
+    std::cout << "made it to setting resolution";
     initMap();
+    std::cout << "initialized map";
 }
 
 Map::Map(Resolution oldRes, int** oldMap)

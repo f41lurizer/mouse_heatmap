@@ -15,8 +15,12 @@
 
 InputReader::InputReader(const char *fileName)
 {
+    std::cout << "made it to constructor\n";
     setFileName(fileName);
+    std::cout << "set file name successfully\n";
     setMapFromFile();
+    std::cout << "set map successfully\n";
+
 }
 
 Map InputReader::getMap()
@@ -27,7 +31,9 @@ Map InputReader::getMap()
 void InputReader::setFileName(const char* fileName)
 {
     file = fileName;
+    std::cout << "set file name\n";
     setMapFromFile();
+    std::cout << "set Map from file\n";
 }
 
 //uses fstream
@@ -36,7 +42,7 @@ void InputReader::setMapFromFile()
     //file IO to get the map
     //set map to whatever comes out of file
     std::ifstream in(file, std::ifstream::in);
-    
+    std::cout << "set fstream\n";
     //get resolution
     std::string resolution;
     std::getline(in, resolution);
@@ -46,11 +52,12 @@ void InputReader::setMapFromFile()
     x = std::stoi(*itr);
     itr++;
     y = std::stoi(*itr);
-    
+    std::cout << "setting resolution\n";
     Resolution res(x, y);
+    std::cout << "set resolution" << res.getX() << res.getY() << "\n";
     //now that we have a resolution, create a map with this resolution
-    map = Map(res);
-
+    map = new Map(res);
+    std::cout << "created map";
     while(in.good())
     {
         std::string entry;
@@ -67,6 +74,7 @@ void InputReader::setMapFromFile()
         map.changeWeight(x, y, 1); 
         //load a mappable array and a resolution
     }
+    std::cout << "made it through while loop";
     in.close();
     map.dither();
 }
