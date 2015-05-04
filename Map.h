@@ -24,6 +24,8 @@ class Map
         Map dither();
         //return the resolution object this map is based on
         Resolution getResolution();
+        //set resolution
+        void setResolution(int x, int y);
         //get the current value of a pixel
         int getWeight(int x, int y);
         //set the value of a pixel 

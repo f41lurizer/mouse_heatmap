@@ -6,7 +6,6 @@
 #include <iostream> //for debugging only
 Map::Map()
 {
-    res = Resolution();
     map = 0;
 }
 
@@ -15,9 +14,7 @@ Map::Map(Resolution resolution)
     res = Resolution();
     res.setX(resolution.getX());
     res.setY(resolution.getY());
-    std::cout << "made it to setting resolution";
     initMap();
-    std::cout << "initialized map";
 }
 
 Map::Map(Resolution oldRes, int** oldMap)
@@ -46,6 +43,12 @@ Resolution Map::getResolution()
     return res;
 }
 
+void Map::setResolution(int x, int y)
+{
+    res.setX(x);
+    res.setY(y);
+    initMap();
+}
 int Map::getWeight(int x, int y) 
 {
     return (x < res.getX() && y < res.getY()) ? *(*(map + y) + x):-1;
@@ -64,6 +67,7 @@ int Map::changeWeight(int x, int y, int amount)
         *(*(map + y) + x) += amount;
         return *(*(map + y) + x);
     }
+    return 0;
 }
 
 void Map::initMap()
@@ -73,7 +77,7 @@ void Map::initMap()
     map = new int*[res.getY()];
     for(int y = 0; y < res.getY(); y++)
     {
-        *(map+y) = new int[res.getY()];
+        *(map+y) = new int[res.getX()];
         for(int x = 0; x < res.getX(); x++)
             *(*(map + y) + x) = 0;
     }
