@@ -56,7 +56,7 @@ void InputReader::setMapFromFile()
     std::string xStr, yStr;
     while(in >> xStr >> yStr)
     {
-        
+        //std::cout << "on line: " << i << "x = " << xStr << "y = " << yStr << std::endl; 
         //std::getline(in, entry);
         x = std::stoi(xStr.substr(2, xStr.length() -2));
         y = std::stoi(yStr.substr(2, yStr.length() -2));
