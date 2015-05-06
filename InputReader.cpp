@@ -15,9 +15,8 @@
 
 InputReader::InputReader(const char *fileName)
 {
-    setFileName(fileName);
-    setMapFromFile();
     map = Map();
+    setFileName(fileName);
 
 }
 
@@ -55,7 +54,7 @@ void InputReader::setMapFromFile()
     map.setResolution(res.getX(), res.getY());
     int i = 1;
     std::string xStr, yStr;
-    while(in >> xStr >> yStr);
+    while(in >> xStr >> yStr)
     {
         
         //std::getline(in, entry);
@@ -67,6 +66,6 @@ void InputReader::setMapFromFile()
         i++;
     }
     in.close();
-    map.dither();
+    //map.dither();
 }
 

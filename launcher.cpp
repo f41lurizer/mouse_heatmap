@@ -10,11 +10,12 @@ int main(int argc,char* argv[])
     std::cout << "made it this far" << std::endl;
     Map map = reader.getMap();
     std::cout << "made it even further" << map.getResolution().getX() << " " << map.getResolution().getY() << " \n";
-    for(int i = 0; i < map.getResolution().getY(); i++)
+   for(int i = 0; i < map.getResolution().getY(); i++)
     {
         for(int n = 0; n < map.getResolution().getX(); n++)
-            std::cout << map.getWeight(i, n);
-        std::cout << std::endl;
+            if(map.getWeight(n,i) > 0)
+                std::cout << map.getWeight(n, i) << " x was: " << n << " y was: " << i <<  std::endl;
     }
+    
         
 }
