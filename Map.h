@@ -32,6 +32,7 @@ class Map
         void setWeight(int x, int y, int amount);
         //change the value of a pixel by the specified amount, returns new weight
         int changeWeight(int x, int y, int amount);
+        //output a map with a new resolution (must be smaller than current resolution and preserve aspect ratio). weights of areas are simply summed into corresponding new pixels
         Map reduceMap(Resolution newRes); //reduce the map to gcf and return it
     private:
         Resolution res;
