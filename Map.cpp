@@ -82,3 +82,27 @@ void Map::initMap()
             *(*(map + y) + x) = 0;
     }
 }
+
+Map Map::reduceMap(Resolution newRes)
+{
+    Map newMap(newRes);
+    int groupSize = getResolution().getX() / newRes.getX(); 
+    int weight = 0;
+
+    for(int y = 0; y < getResolution().getY(); y += groupSize)
+    {
+        for(int x = 0; x < getResolution().getX(); x+= groupSize)
+        {
+            for(int yP = y; yP < y+groupSize; yP++)
+            {
+                for(int xP = x; xP < x+groupSize; xP++)
+                {
+                    weight += getWeight(xP, yP);
+                }
+            }
+            newMap.setWeight(x / groupSize , y / groupSize, weight);
+            weight = 0;
+       }
+    }
+    return newMap;
+}

@@ -32,7 +32,7 @@ class Map
         void setWeight(int x, int y, int amount);
         //change the value of a pixel by the specified amount, returns new weight
         int changeWeight(int x, int y, int amount);
-        
+        Map reduceMap(Resolution newRes); //reduce the map to gcf and return it
     private:
         Resolution res;
         int** map;

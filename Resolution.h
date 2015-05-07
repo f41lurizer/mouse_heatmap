@@ -3,7 +3,8 @@
 ** Class Name: Resolution
 ** Class Purpose: Stores a simple integer resolution and provides ways to access and modify it
 */
-
+#ifndef RESOLUTION_H
+#define RESOLUTION_H
 class Resolution
 {
     public:
@@ -19,3 +20,4 @@ class Resolution
     private:
         int x, y;
 };
+#endif
