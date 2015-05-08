@@ -15,24 +15,49 @@
 
 InputReader::InputReader(const char *fileName)
 {
-    map = Map();
+    activityMap = Map();
+    restMap = Map();
     setFileName(fileName);
 
-}
-
-Map InputReader::getMap()
-{
-    return map;
 }
 
 void InputReader::setFileName(const char* fileName)
 {
     file = fileName;
-    setMapFromFile();
+    setDataFromFile();
 }
 
+Map InputReader::getActivityMap()
+{
+    return activityMap;
+}
+
+Map InputReader::getRestMap()
+{
+    return restMap;
+}
+
+double InputReader::getActivityDuration()
+{
+    return activityDuration;
+}
+
+double InputReader::getActivityInterval()
+{
+    return activityDuration;
+}
+
+double InputReader::getRestDuration()
+{
+    return restDuration;
+}
+
+double InputReader::getRestInterval()
+{
+    return restInterval;
+}
 //uses fstream
-void InputReader::setMapFromFile()
+void InputReader::setDataFromFile()
 {
     //file IO to get the map
     //set map to whatever comes out of file
@@ -47,22 +72,45 @@ void InputReader::setMapFromFile()
     itr++;
     y = std::stoi(*itr);
     Resolution res(x, y);
-    //now that we have a resolution, create a map with this resolution
-    //map = 
-    //Map newMap();  
-    //map.setResolution()
-    map.setResolution(res.getX(), res.getY());
-    int i = 1;
+    //now we have resolution, need to set resolution of both maps to it
+    restMap.setResolution(res.getX(), res.getY());
+    activityMap.setResolution(res.getX(), res.getY());
+
+    int i = 1;//loop counter (for debugging only) to tell what line of input gives errors
     std::string xStr, yStr;
+    int xPrev = -1, yPrev = -1;
+    int totalRestDuration = 0, numRests = 0, totalActivityDuration = 0, numActivity = 0;
+    bool rest = false, prevRest = true;
     while(in >> xStr >> yStr)
     {
         //std::cout << "on line: " << i << "x = " << xStr << "y = " << yStr << std::endl; 
         //std::getline(in, entry);
         x = std::stoi(xStr.substr(2, xStr.length() -2));
         y = std::stoi(yStr.substr(2, yStr.length() -2));
-        //update map to reflect more weight
-        map.changeWeight(x, y, 1);
-        //load a mappable array and a resolution
+
+        //see if it's a rest or activity
+        rest = (x == xPrev && y == yPrev);
+        //update counters for rest/activity duration
+        totalActivityDuration += !rest ? 1 : 0;
+        totalRestDuration += rest ? 1 : 0;
+
+        //if we are switching from rest to activity or activity to rest, increment either number of rests or number of activities
+
+        if(rest != prevRest) 
+        {
+            numActivity += !rest ? 1 : 0;
+            numRests += rest ? 1 : 0; 
+        }
+
+        //update maps
+        if(!rest)
+            //update map to reflect more weight
+            activityMap.changeWeight(x, y, 1);
+        else if(rest)
+            restMap.changeWeight(x, y, 1);
+
+        xPrev = x;
+        yPrev = y;
         i++;
     }
     in.close();

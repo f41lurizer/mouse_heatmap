@@ -6,13 +6,16 @@
 int main(int argc,char* argv[])
 {
     InputReader reader(argv[2]);
-    Map map = reader.getMap();
+    Map map = reader.getActivityMap();
     //uncomment next two liens to ouput a map of smallest possible size
     //int gcf = map.getResolution().gcf();
     //Resolution smallRes(map.getResolution().getX() / gcf, map.getResolution().getY() / gcf);
-    Resolution smallRes(map.getResolution().getX() / 10, map.getResolution().getY() / 10);
 
+
+    //output a map that reduces each dimension by a factor of 10 (1/100 total size)
+    Resolution smallRes(map.getResolution().getX() / 10, map.getResolution().getY() / 10);
     Map smallMap = map.reduceMap(smallRes);
+
     //output small map to console to see what's going on
     for(int i = 0; i < smallMap.getResolution().getY(); i++)
     {
