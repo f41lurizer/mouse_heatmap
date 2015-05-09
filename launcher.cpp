@@ -5,13 +5,15 @@
 
 int main(int argc,char* argv[])
 {
+    std::cout << "reading map\n";
     InputReader reader(argv[2]);
+    std::cout << "read map\n";
+    
     Map map = reader.getActivityMap();
     //uncomment next two liens to ouput a map of smallest possible size
     //int gcf = map.getResolution().gcf();
     //Resolution smallRes(map.getResolution().getX() / gcf, map.getResolution().getY() / gcf);
-
-
+    std::cout << "got activity Map\n";
     //output a map that reduces each dimension by a factor of 10 (1/100 total size)
     Resolution smallRes(map.getResolution().getX() / 10, map.getResolution().getY() / 10);
     Map smallMap = map.reduceMap(smallRes);
@@ -40,4 +42,6 @@ int main(int argc,char* argv[])
         }
     }
     bmp.save_image("image.bmp"); 
+    std::cout << "Image saved\n";
+    std::cout << "RestDuration: " << reader.getRestDuration() << " ActivityDuration: " << reader.getActivityDuration() << std::endl;
 }

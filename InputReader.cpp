@@ -15,8 +15,10 @@
 
 InputReader::InputReader(const char *fileName)
 {
+    std::cout << "in constructor";
     activityMap = Map();
     restMap = Map();
+    std::cout << "about to call setfilename\n";
     setFileName(fileName);
 
 }
@@ -24,6 +26,7 @@ InputReader::InputReader(const char *fileName)
 void InputReader::setFileName(const char* fileName)
 {
     file = fileName;
+    std::cout << "calling setdataonfile";
     setDataFromFile();
 }
 
@@ -59,6 +62,7 @@ double InputReader::getRestInterval()
 //uses fstream
 void InputReader::setDataFromFile()
 {
+    std::cout << "in setdatafromfile\n";
     //file IO to get the map
     //set map to whatever comes out of file
     std::ifstream in(file, std::ifstream::in);
@@ -76,6 +80,7 @@ void InputReader::setDataFromFile()
     restMap.setResolution(res.getX(), res.getY());
     activityMap.setResolution(res.getX(), res.getY());
 
+    std::cout << "set all the resolution stuff\n";
     int i = 1;//loop counter (for debugging only) to tell what line of input gives errors
     std::string xStr, yStr;
     int xPrev = -1, yPrev = -1;
@@ -98,8 +103,11 @@ void InputReader::setDataFromFile()
 
         if(rest != prevRest) 
         {
+            std::cout << "switching from rest to active\n";
             numActivity += !rest ? 1 : 0;
             numRests += rest ? 1 : 0; 
+            std::cout << "numActivity: " << numActivity << " numRests: " << numRests << std::endl; 
+            std::cout << "activityDuration: " << totalActivityDuration << " restDuration: " << totalRestDuration << std::endl;
         }
 
         //update maps
@@ -108,11 +116,16 @@ void InputReader::setDataFromFile()
             activityMap.changeWeight(x, y, 1);
         else if(rest)
             restMap.changeWeight(x, y, 1);
-
+        
+        //now we update variables
         xPrev = x;
         yPrev = y;
+        prevRest = rest;
         i++;
     }
+    //update the durations and intervals
+    restDuration = numRests > 0 ? totalRestDuration / numRests : 0;
+    activityDuration = numActivity > 0 ? totalActivityDuration / numActivity: 0;
     in.close();
     //map.dither();
 }

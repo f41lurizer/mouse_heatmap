@@ -1,1 +1,2 @@
 add option to detect multiple cursors with xrandr for multi-screen support
+investigate working with windows api to get mouse position
