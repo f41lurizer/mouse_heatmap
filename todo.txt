@@ -1,2 +1,4 @@
 add option to detect multiple cursors with xrandr for multi-screen support
-investigate working with windows api to get mouse position
+abstract inputreader and have a method to read an input array (this way we can perform operations on the array from the windows api stuff
+finish windows stuff
+

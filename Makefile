@@ -1,4 +1,5 @@
-#Pass in this flag -- not sure how -std=c++11 --needed for stoi in InputReader
+#uncomment this line and comment g++ to compile for windows
+#CC=x86_64-w64-mingw32-g++
 CC=g++
 CXXFLAGS=-c -Wall -std=c++11
 
